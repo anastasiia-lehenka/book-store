@@ -1,0 +1,26 @@
+.book-item {
+  margin-bottom: 20px;
+}
+
+.book-card {
+  max-width: 260px;
+  margin: 0 auto;
+  padding: 10px 20px 15px;
+}
+
+.book-card__body {
+  padding: 20px 0 10px !important;
+}
+
+.book-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.book-card__price {
+  margin: 0;
+}
