@@ -40,7 +40,7 @@ class Service {
   getBooks = async () => this.sendHttpRequest({
     method: 'GET',
     entity: this.booksEntity,
-    token: 'dpacya83azdq46so6g6f9a',
+    token: '9wa76vgfe3k9q4uknz1fw4',
   });
 }
 

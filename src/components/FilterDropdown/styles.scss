@@ -1,6 +1,10 @@
 @import '../../variables';
 
-.search {
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
   max-width: 260px;
 
   @media (max-width: 576px) {
@@ -8,16 +12,17 @@
   }
 }
 
-.search__input,
-.search__button {
+.filter__label {
+  margin-right: 15px;
+  margin-bottom: 0;
+}
+
+.filter__dropdown {
+  flex-grow: 1;
+
   &:focus {
     border-color: $light !important;
     box-shadow: none !important;
     outline: none !important;
   }
-}
-
-.search__button {
-  border-right: 0 !important;
-  border-color: $light !important;
 }
