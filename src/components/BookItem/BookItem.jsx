@@ -6,7 +6,9 @@ import './styles.scss';
 const BookItem = ({ bookData }) => (
   <Col className="book-item">
     <Card className="book-card h-100">
-      <Card.Img className="book-card__image" variant="top" src={bookData.cover} alt="book cover" />
+      <div className="book-card__image-container">
+        <Card.Img className="book-card__image" variant="top" src={bookData.cover} alt="book cover" />
+      </div>
       <Card.Body className="book-card__body">
         <Card.Title>{bookData.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{bookData.author}</Card.Subtitle>
@@ -20,10 +22,6 @@ const BookItem = ({ bookData }) => (
   </Col>
 );
 
-BookItem.defaultProps = {
-  bookData: {},
-};
-
 BookItem.propTypes = {
   bookData: PropTypes.shape({
     id: PropTypes.string,
@@ -35,7 +33,7 @@ BookItem.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
     price: PropTypes.number,
     count: PropTypes.number,
-  }),
+  }).isRequired,
 };
 
 export default BookItem;

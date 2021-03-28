@@ -1,0 +1,15 @@
+@import '../../variables';
+
+.search-input,
+.search-button {
+  &:focus {
+    border-color: $light !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.search-button {
+  border-right: 0 !important;
+  border-color: $light !important;
+}
