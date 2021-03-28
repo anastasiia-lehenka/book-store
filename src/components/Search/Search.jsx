@@ -15,15 +15,15 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form className="search" onSubmit={onSubmit}>
       <InputGroup className="mb-3">
         <InputGroup.Prepend>
-          <Button className="search-button" type="submit" variant="outline-secondary">
+          <Button className="search__button" type="submit" variant="outline-secondary">
             <SearchIcon />
           </Button>
         </InputGroup.Prepend>
         <FormControl
-          className="search-input"
+          className="search__input"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Search"
