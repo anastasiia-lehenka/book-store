@@ -1,14 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Col,
-  Container,
-  Row,
-  Spinner,
-} from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { loadBooks } from '../../store/books/actions';
 import BookItem from '../../components/BookItem';
 import FilterDropdown from '../../components/FilterDropdown';
+import Header from '../../components/Header';
 import Search from '../../components/Search';
 import './styles.scss';
 
@@ -52,24 +48,23 @@ const BookCatalog = () => {
   );
 
   return (
-    <Container fluid className="wrapper">
-      <Row className="mb-5">
-        <Col sm={6} md={4} lg={3}>
+    <>
+      <Header />
+      <div className="wrapper">
+        <div className="filters">
           <Search onSearch={onSearch} />
-        </Col>
-        <Col sm={{ span: 5, offset: 1 }} md={{ span: 4, offset: 4 }} lg={{ span: 3, offset: 6 }}>
           <FilterDropdown onChange={onFilter} />
-        </Col>
-      </Row>
-      { loadingBooks
-        ? <Spinner className="d-block centered" animation="border" variant="secondary" size="lg" />
-        : (
-          <Row xs={1} sm={2} md={3} lg={4} xl={5} xxl={6}>
-            { books.length
-            && renderBooks(filterBooks(searchBooks(books, searchText), filterValue)) }
-          </Row>
-        )}
-    </Container>
+        </div>
+        { loadingBooks
+          ? <Spinner className="d-block centered" animation="border" variant="secondary" size="lg" />
+          : (
+            <div className="books-container">
+              { books.length
+                    && renderBooks(filterBooks(searchBooks(books, searchText), filterValue))}
+            </div>
+          )}
+      </div>
+    </>
   );
 };
 
