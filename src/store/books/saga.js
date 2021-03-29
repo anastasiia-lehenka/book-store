@@ -1,17 +1,34 @@
 import { call, put } from 'redux-saga/effects';
 import service from '../../service';
-import { loadBooksSuccess, loadBooksFailure } from './actions';
+import {
+  loadAllBooksSuccess,
+  loadAllBooksFailure,
+  loadBookSuccess,
+  loadBookFailure,
+} from './actions';
 
-// eslint-disable-next-line import/prefer-default-export
-export function* booksWorker() {
+export function* loadAllBooksWorker() {
   let books;
 
   try {
-    books = yield call(service.getBooks);
+    books = yield call(service.getAllBooks);
   } catch (err) {
-    yield put(loadBooksFailure(err.message));
+    yield put(loadAllBooksFailure(err.message));
     return;
   }
 
-  yield put(loadBooksSuccess(books));
+  yield put(loadAllBooksSuccess(books));
+}
+
+export function* loadBookWorker({ payload }) {
+  let book;
+
+  try {
+    book = yield call(service.getBook, payload);
+  } catch (err) {
+    yield put(loadBookFailure(err.message));
+    return;
+  }
+
+  yield put(loadBookSuccess(book));
 }

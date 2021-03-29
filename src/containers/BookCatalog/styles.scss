@@ -1,13 +1,8 @@
-.centered {
-  margin: 0 auto;
-}
-
 .filters {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 550px;
-  padding: 0 10px;
   margin-bottom: 30px;
 
   @media (min-width: 550px) {
@@ -16,11 +11,10 @@
 }
 
 .books-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-gap: 5px;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: stretch;
-  padding: 5px;
 
   @media (min-width: 550px) {
     justify-content: space-around;

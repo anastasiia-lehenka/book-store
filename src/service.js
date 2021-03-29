@@ -17,7 +17,7 @@ class Service {
     method,
     entity,
     data,
-    token,
+    token = '88qx7gky0ij666d2ucy3w',
   }) {
     const response = await fetch(`${this.url}/${entity}`, {
       method,
@@ -37,10 +37,14 @@ class Service {
     return parsedResponse;
   }
 
-  getBooks = async () => this.sendHttpRequest({
+  getAllBooks = async () => this.sendHttpRequest({
     method: 'GET',
     entity: this.booksEntity,
-    token: '9wa76vgfe3k9q4uknz1fw4',
+  });
+
+  getBook = async (id) => this.sendHttpRequest({
+    method: 'GET',
+    entity: `${this.booksEntity}/${id}`,
   });
 }
 

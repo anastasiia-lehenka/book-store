@@ -3,10 +3,10 @@ import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const FilterDropdown = ({ onChange }) => (
+const FilterDropdown = ({ value, onChange }) => (
   <div className="filter">
-    <Form.Label className="filter__label">Price:</Form.Label>
-    <Form.Control className="filter__dropdown" as="select" defaultValue="All" onChange={(e) => onChange(e.target.value)}>
+    <Form.Label className="mb-0 mr-3">Price:</Form.Label>
+    <Form.Control className="filter__dropdown" as="select" value={value} onChange={(e) => onChange(e.target.value)}>
       <option value="All">All</option>
       <option value="0-25">0-25$</option>
       <option value="25-50">25-50$</option>
@@ -15,6 +15,9 @@ const FilterDropdown = ({ onChange }) => (
   </div>
 );
 
-FilterDropdown.propTypes = { onChange: PropTypes.func.isRequired };
+FilterDropdown.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default React.memo(FilterDropdown);

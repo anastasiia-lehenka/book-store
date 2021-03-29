@@ -6,8 +6,8 @@ import { Search as SearchIcon } from 'react-bootstrap-icons';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Search = ({ onSearch }) => {
-  const [value, setValue] = useState('');
+const Search = ({ defaultValue, onSearch }) => {
+  const [value, setValue] = useState(defaultValue);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +33,9 @@ const Search = ({ onSearch }) => {
   );
 };
 
-Search.propTypes = { onSearch: PropTypes.func.isRequired };
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string.isRequired,
+};
 
 export default React.memo(Search);

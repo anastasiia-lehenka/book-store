@@ -1,30 +1,32 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
-import { loadBooks } from '../../store/books/actions';
+import { loadAllBooks, setBooksFilter, setBooksSearch } from '../../store/books/actions';
 import BookItem from '../../components/BookItem';
 import FilterDropdown from '../../components/FilterDropdown';
 import Header from '../../components/Header';
+import Loader from '../../components/Loader';
 import Search from '../../components/Search';
 import './styles.scss';
 
 const BookCatalog = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books.books);
-  const loadingBooks = useSelector((state) => state.books.loading);
-  const [searchText, setSearchText] = useState('');
-  const [filterValue, setFilterValue] = useState('All');
+  const books = useSelector((state) => state.books.data);
+  const loadingBooks = useSelector((state) => state.books.isLoading);
+  const searchText = useSelector((state) => state.books.search);
+  const filterValue = useSelector((state) => state.books.filter);
 
   useEffect(() => {
-    dispatch(loadBooks());
+    if (!books.length) {
+      dispatch(loadAllBooks());
+    }
   }, []);
 
   const onSearch = useCallback((value) => {
-    setSearchText(value.toLowerCase().trim());
+    dispatch(setBooksSearch(value.toLowerCase().trim()));
   }, []);
 
   const onFilter = useCallback((value) => {
-    setFilterValue(value);
+    dispatch(setBooksFilter(value));
   }, []);
 
   const searchBooks = (booksData, search) => (
@@ -43,8 +45,12 @@ const BookCatalog = () => {
 
   const renderBooks = (booksData) => (
     booksData.length
-      ? booksData.map((book) => <BookItem key={book.id} bookData={book} />)
-      : <p className="centered text-muted">No items match your search</p>
+      ? (
+        <div className="books-container">
+          { booksData.map((book) => <BookItem key={book.id} bookData={book} />)}
+        </div>
+      )
+      : <p className="text-muted pt-5 text-center">No items match your search</p>
   );
 
   return (
@@ -52,16 +58,13 @@ const BookCatalog = () => {
       <Header />
       <div className="wrapper">
         <div className="filters">
-          <Search onSearch={onSearch} />
-          <FilterDropdown onChange={onFilter} />
+          <Search defaultValue={searchText} onSearch={onSearch} />
+          <FilterDropdown value={filterValue} onChange={onFilter} />
         </div>
         { loadingBooks
-          ? <Spinner className="d-block centered" animation="border" variant="secondary" size="lg" />
-          : (
-            <div className="books-container">
-              { books.length
-                    && renderBooks(filterBooks(searchBooks(books, searchText), filterValue))}
-            </div>
+          ? <Loader />
+          : (books.length
+            && renderBooks(filterBooks(searchBooks(books, searchText), filterValue))
           )}
       </div>
     </>
