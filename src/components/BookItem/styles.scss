@@ -1,7 +1,7 @@
 .book-card {
   width: 250px;
   padding: 10px 20px 15px;
-  margin: 0 5px 20px;
+  margin-bottom: 20px;
 }
 
 .book-card__image {
@@ -23,8 +23,4 @@
   padding: 0 !important;
   background: transparent !important;
   border: 0 !important;
-}
-
-.book-card__price {
-  margin: 0;
 }

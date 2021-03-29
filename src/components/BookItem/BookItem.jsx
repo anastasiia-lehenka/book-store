@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 const BookItem = ({ bookData }) => (
@@ -12,8 +13,10 @@ const BookItem = ({ bookData }) => (
     </Card.Body>
     <Card.Footer className="book-card__footer">
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <p className="book-card__price">{bookData.price}$</p>
-      <Button variant="outline-secondary" size="sm">View</Button>
+      <p className="m-0">{bookData.price}$</p>
+      <Link to={`/catalog/${bookData.id}`}>
+        <Button variant="outline-secondary" size="sm">View</Button>
+      </Link>
     </Card.Footer>
   </Card>
 );

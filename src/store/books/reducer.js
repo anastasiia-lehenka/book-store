@@ -1,33 +1,93 @@
 import {
-  LOAD_BOOKS,
-  LOAD_BOOKS_SUCCESS,
-  LOAD_BOOKS_FAILURE,
+  LOAD_ALL_BOOKS,
+  LOAD_ALL_BOOKS_SUCCESS,
+  LOAD_ALL_BOOKS_FAILURE,
+  LOAD_BOOK,
+  LOAD_BOOK_SUCCESS,
+  LOAD_BOOK_FAILURE,
+  SET_BOOKS_FILTER,
+  SET_BOOKS_SEARCH,
 } from './types';
 
 const initialState = {
-  books: [],
-  loading: false,
+  data: [],
+  isLoading: false,
   error: '',
+  search: '',
+  filter: 'All',
+  openedBook: {
+    data: {},
+    isLoading: false,
+    error: '',
+  },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_BOOKS:
+    case LOAD_ALL_BOOKS:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
+        error: '',
       };
-    case LOAD_BOOKS_SUCCESS:
+
+    case LOAD_ALL_BOOKS_SUCCESS:
       return {
         ...state,
-        books: action.payload,
-        loading: false,
+        data: action.payload,
+        isLoading: false,
+        error: '',
       };
-    case LOAD_BOOKS_FAILURE:
+
+    case LOAD_ALL_BOOKS_FAILURE:
       return {
         ...state,
-        loading: false,
+        data: [],
+        isLoading: false,
         error: action.payload,
+      };
+
+    case LOAD_BOOK:
+      return {
+        ...state,
+        openedBook: {
+          ...state.openedBook,
+          data: [],
+          isLoading: true,
+          error: '',
+        },
+      };
+
+    case LOAD_BOOK_SUCCESS:
+      return {
+        ...state,
+        openedBook: {
+          data: action.payload,
+          isLoading: false,
+          error: '',
+        },
+      };
+
+    case LOAD_BOOK_FAILURE:
+      return {
+        ...state,
+        openedBook: {
+          data: [],
+          isLoading: false,
+          error: action.payload,
+        },
+      };
+
+    case SET_BOOKS_SEARCH:
+      return {
+        ...state,
+        search: action.payload,
+      };
+
+    case SET_BOOKS_FILTER:
+      return {
+        ...state,
+        filter: action.payload,
       };
 
     default: return state;
