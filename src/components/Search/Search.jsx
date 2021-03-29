@@ -16,7 +16,7 @@ const Search = ({ onSearch }) => {
 
   return (
     <Form className="search" onSubmit={onSubmit}>
-      <InputGroup className="mb-3">
+      <InputGroup>
         <InputGroup.Prepend>
           <Button className="search__button" type="submit" variant="outline-secondary">
             <SearchIcon />

@@ -1,7 +1,32 @@
-.wrapper {
-  min-width: 280px;
-}
-
 .centered {
   margin: 0 auto;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 550px;
+  padding: 0 10px;
+  margin-bottom: 30px;
+
+  @media (min-width: 550px) {
+    flex-direction: row;
+  }
+}
+
+.books-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+  padding: 5px;
+
+  @media (min-width: 550px) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: 830px) {
+    justify-content: space-between;
+  }
 }
