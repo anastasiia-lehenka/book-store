@@ -8,6 +8,7 @@ import {
 import { useSelector } from 'react-redux';
 import BookCatalog from './containers/BookCatalog';
 import BookDetails from './containers/BookDetails';
+import Cart from './containers/Cart';
 import Login from './containers/Login';
 import NotFound from './components/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -23,6 +24,7 @@ const App = () => {
         <ProtectedRoute exact path="/catalog/:id" component={BookDetails} token={token} />
         <Route exact path="/not-found" component={NotFound} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/">
           <Redirect to="/catalog" />
         </Route>
