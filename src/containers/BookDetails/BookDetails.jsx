@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import {
+  Button,
+  Col,
+  Form,
+  Row,
+} from 'react-bootstrap';
 import { TagsFill as TagsIcon } from 'react-bootstrap-icons';
 import { loadBook } from '../../store/books/actions';
+import { addBookToCart } from '../../store/cart/actions';
 import Header from '../Header';
 import Loader from '../../components/Loader';
 import './styles.scss';
@@ -14,6 +20,8 @@ const BookDetails = () => {
   const book = useSelector((state) => state.books.openedBook.data);
   const loadingBook = useSelector((state) => state.books.openedBook.isLoading);
   const [countValue, setCountValue] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(book.price);
+  const [isSuccessTextShown, setIsSuccessTextShown] = useState(false);
 
   useEffect(() => {
     if (book.id !== id) {
@@ -21,17 +29,44 @@ const BookDetails = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    setTotalPrice(book.price);
+  }, [book]);
+
   const convertTagsToString = (tags) => (tags
     ? tags.map((tag) => tag.charAt(0).toUpperCase() + tag.slice(1)).join(', ')
     : '');
 
-  const countTotalPrice = (price, count) => (price * count).toFixed(2);
+  const countTotalPrice = (price, count) => Number((price * count).toFixed(2));
+
+  const isCountValid = (value) => value > 0 && value < 1000;
 
   const changeCount = (e) => {
     const { value } = e.target;
-    if (value < 1000) {
-      setCountValue(e.target.value);
+    const numericValue = Number(value);
+
+    if (isCountValid(numericValue)) {
+      setCountValue(numericValue);
+      setTotalPrice(countTotalPrice(book.price, numericValue));
     }
+  };
+
+  const addToCart = (e) => {
+    e.preventDefault();
+    setIsSuccessTextShown(false);
+
+    dispatch(addBookToCart({
+      id: book.id,
+      title: book.title,
+      price: book.price,
+      count: countValue,
+      totalPrice,
+    }));
+
+    setCountValue(1);
+    setTotalPrice(book.price);
+    setIsSuccessTextShown(true);
+    setTimeout(() => setIsSuccessTextShown(false), 3000);
   };
 
   return (
@@ -56,29 +91,41 @@ const BookDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="book-buy">
-                <div className="book-buy__col">
-                  <p>Price, $:</p>
-                  <p>{book.price}</p>
-                </div>
-                <div className="book-buy__col">
-                  <p>Count:</p>
-                  <Form.Control
-                    className="book-count-select"
-                    value={countValue}
-                    onChange={changeCount}
-                    type="number"
-                    size="sm"
-                  />
-                </div>
-                <div className="book-buy__col">
-                  <p>Total price, $:</p>
-                  <p>{countTotalPrice(book.price, countValue)}</p>
-                </div>
+              <Form className="book-buy" onSubmit={addToCart}>
+                <Form.Group as={Row}>
+                  <Form.Label column>
+                    Price, $:
+                  </Form.Label>
+                  <Form.Label className="text-right" column>
+                    {book.price}
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group as={Row}>
+                  <Form.Label column xs="8">Count:</Form.Label>
+                  <Col xs="4">
+                    <Form.Control
+                      className="book-count-select"
+                      value={countValue}
+                      onChange={changeCount}
+                      type="number"
+                      min="1"
+                      size="sm"
+                    />
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                  <Form.Label column>Total price, $:</Form.Label>
+                  <Form.Label className="text-right" column>{totalPrice}</Form.Label>
+                </Form.Group>
+                { isSuccessTextShown && (
+                <Form.Text className="text-success text-center mb-4">
+                  Item was successfully added to the cart.
+                </Form.Text>
+                )}
                 <div className="book-add-button">
-                  <Button variant="secondary" size="sm">Add To Cart</Button>
+                  <Button variant="secondary" type="submit" size="sm" disabled={isSuccessTextShown}>Add To Cart</Button>
                 </div>
-              </div>
+              </Form>
             </div>
           )}
       </div>

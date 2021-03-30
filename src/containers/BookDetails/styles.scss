@@ -38,24 +38,10 @@
 }
 
 .book-buy {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
   width: 300px;
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid $light;
-}
-
-.book-buy__col {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-
-  p {
-    margin: 0;
-  }
 }
 
 .book-add-button {
@@ -65,8 +51,6 @@
 }
 
 .book-count-select {
-  width: 60px !important;
-
   &:focus {
     border-color: $light !important;
     box-shadow: none !important;

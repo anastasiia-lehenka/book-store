@@ -39,4 +39,4 @@ Node.js v12.16.1
 
 ###### Note
 
-The app might not work correctly on GitHub Pages, as it is using React BrowserRouter which is not fully supported by Github Pages. So in order to test full app functionality it is recommended to download the app and run it on your computer.
+The app might not work correctly on GitHub Pages, as it is using React BrowserRouter, which is not fully supported by Github Pages. So, in order to test full app functionality, it is recommended to download the app and run it on your computer.
