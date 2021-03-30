@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { TagsFill as TagsIcon } from 'react-bootstrap-icons';
 import { loadBook } from '../../store/books/actions';
-import Header from '../../components/Header';
+import Header from '../Header';
 import Loader from '../../components/Loader';
 import './styles.scss';
 

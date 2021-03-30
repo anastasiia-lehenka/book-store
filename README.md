@@ -39,5 +39,4 @@ Node.js v12.16.1
 
 ###### Note
 
-To view application on GitHub Pages you need to allow Insecure content in the settings of your browser. This issue is caused by making requests to http.
-
+The app might not work correctly on GitHub Pages, as it is using React BrowserRouter which is not fully supported by Github Pages. So in order to test full app functionality it is recommended to download the app and run it on your computer.

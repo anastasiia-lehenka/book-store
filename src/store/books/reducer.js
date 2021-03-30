@@ -8,6 +8,7 @@ import {
   SET_BOOKS_FILTER,
   SET_BOOKS_SEARCH,
 } from './types';
+import { LOG_OUT } from '../auth/types';
 
 const initialState = {
   data: [],
@@ -89,6 +90,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         filter: action.payload,
       };
+
+    case LOG_OUT:
+      return initialState;
 
     default: return state;
   }

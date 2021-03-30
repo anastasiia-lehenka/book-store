@@ -1,4 +1,4 @@
-import { SERVER_URL } from './constants';
+import { SERVER_URL } from '../constants';
 
 class Service {
   constructor() {
@@ -17,13 +17,13 @@ class Service {
     method,
     entity,
     data,
-    token = '88qx7gky0ij666d2ucy3w',
+    token,
   }) {
     const response = await fetch(`${this.url}/${entity}`, {
       method,
       body: JSON.stringify(data),
       headers: token
-        ? { Authorization: `Bearer ${token}` }
+        ? { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
         : { 'Content-Type': 'application/json' },
     });
 
@@ -37,14 +37,22 @@ class Service {
     return parsedResponse;
   }
 
-  getAllBooks = async () => this.sendHttpRequest({
-    method: 'GET',
-    entity: this.booksEntity,
+  logIn = async (username) => this.sendHttpRequest({
+    method: 'POST',
+    entity: this.signInEntity,
+    data: { username },
   });
 
-  getBook = async (id) => this.sendHttpRequest({
+  getAllBooks = async (token) => this.sendHttpRequest({
+    method: 'GET',
+    entity: this.booksEntity,
+    token,
+  });
+
+  getBook = async (id, token) => this.sendHttpRequest({
     method: 'GET',
     entity: `${this.booksEntity}/${id}`,
+    token,
   });
 }
 
