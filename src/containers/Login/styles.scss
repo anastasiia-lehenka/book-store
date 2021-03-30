@@ -1,0 +1,22 @@
+@import '../../variables';
+
+.login-form-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form__input {
+  margin-bottom: 20px;
+
+  &:focus {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.login-form {
+  width: 250px;
+}

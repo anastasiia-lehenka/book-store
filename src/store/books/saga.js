@@ -1,5 +1,5 @@
-import { call, put } from 'redux-saga/effects';
-import service from '../../service';
+import { call, put, select } from 'redux-saga/effects';
+import service from '../../services/service';
 import {
   loadAllBooksSuccess,
   loadAllBooksFailure,
@@ -9,9 +9,10 @@ import {
 
 export function* loadAllBooksWorker() {
   let books;
+  const { auth } = yield select();
 
   try {
-    books = yield call(service.getAllBooks);
+    books = yield call(service.getAllBooks, auth.token);
   } catch (err) {
     yield put(loadAllBooksFailure(err.message));
     return;
@@ -22,9 +23,10 @@ export function* loadAllBooksWorker() {
 
 export function* loadBookWorker({ payload }) {
   let book;
+  const { auth } = yield select();
 
   try {
-    book = yield call(service.getBook, payload);
+    book = yield call(service.getBook, payload, auth.token);
   } catch (err) {
     yield put(loadBookFailure(err.message));
     return;

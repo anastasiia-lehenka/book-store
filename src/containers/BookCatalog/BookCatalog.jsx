@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadAllBooks, setBooksFilter, setBooksSearch } from '../../store/books/actions';
 import BookItem from '../../components/BookItem';
 import FilterDropdown from '../../components/FilterDropdown';
-import Header from '../../components/Header';
+import Header from '../Header';
 import Loader from '../../components/Loader';
 import Search from '../../components/Search';
 import './styles.scss';
@@ -61,11 +61,10 @@ const BookCatalog = () => {
           <Search defaultValue={searchText} onSearch={onSearch} />
           <FilterDropdown value={filterValue} onChange={onFilter} />
         </div>
-        { loadingBooks
-          ? <Loader />
-          : (books.length
-            && renderBooks(filterBooks(searchBooks(books, searchText), filterValue))
-          )}
+        { loadingBooks && <Loader /> }
+        { books.length
+          ? renderBooks(filterBooks(searchBooks(books, searchText), filterValue))
+          : ''}
       </div>
     </>
   );
