@@ -24,7 +24,9 @@ const Header = () => {
       <div className="header__bordered">
         <div className="wrapper">
           <div className="header__main">
-            <h3>JS Band Store</h3>
+            <Link to="/catalog">
+              <h3>JS Band Store</h3>
+            </Link>
             <Link to="/cart">
               <CartIcon className="header__cart-icon" />
               <span className="mr-1">{`Cart (${cartCount})`}</span>

@@ -15,6 +15,7 @@
 }
 
 .header__bordered {
+  min-width: 360px;
   border-top: 1px solid $light;
   border-bottom: 1px solid $light;
 }

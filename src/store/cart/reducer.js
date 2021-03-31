@@ -3,6 +3,9 @@ import {
   PURCHASE,
   PURCHASE_FAILURE,
   PURCHASE_SUCCESS,
+  SHOW_MODAL,
+  HIDE_MODAL,
+  CLEAR_CART,
 } from './types';
 
 const initialState = {
@@ -11,6 +14,7 @@ const initialState = {
   totalCount: 0,
   isLoading: false,
   error: '',
+  isModalShown: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,13 +52,37 @@ const reducer = (state = initialState, action) => {
       };
 
     case PURCHASE_SUCCESS:
-      return initialState;
+      return {
+        ...state,
+        isLoading: false,
+        error: '',
+      };
 
     case PURCHASE_FAILURE:
       return {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+
+    case SHOW_MODAL:
+      return {
+        ...state,
+        isModalShown: true,
+      };
+
+    case HIDE_MODAL:
+      return {
+        ...state,
+        isModalShown: false,
+      };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        data: [],
+        totalPrice: 0,
+        totalCount: 0,
       };
 
     default: return state;

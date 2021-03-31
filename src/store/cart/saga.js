@@ -1,12 +1,17 @@
 import { call, put, select } from 'redux-saga/effects';
 import service from '../../services/service';
-import { purchaseSuccess, purchaseFailure } from './actions';
+import {
+  purchaseSuccess,
+  purchaseFailure,
+  showModal,
+} from './actions';
 
 // eslint-disable-next-line import/prefer-default-export
 export function* purchaseWorker({ payload }) {
-  let response;
-  const data = { books: [] };
   const { auth } = yield select();
+  const data = {
+    books: [],
+  };
 
   payload.forEach((book) => {
     let i = book.count;
@@ -18,11 +23,12 @@ export function* purchaseWorker({ payload }) {
   });
 
   try {
-    response = yield call(service.purchase, data, auth.token);
+    yield call(service.purchase, data, auth.token);
   } catch (err) {
     yield put(purchaseFailure(err.message));
     return;
   }
 
-  yield put(purchaseSuccess(response));
+  yield put(purchaseSuccess());
+  yield put(showModal());
 }
