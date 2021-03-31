@@ -1,22 +1,28 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Table } from 'react-bootstrap';
 import { CartFill as CartIcon } from 'react-bootstrap-icons';
+import { purchase } from '../../store/cart/actions';
 import Header from '../Header';
 import './styles.scss';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.data);
   const totalOrderPrice = useSelector((state) => state.cart.totalPrice);
+
+  const onPurchase = () => {
+    dispatch(purchase(cartItems));
+  };
 
   return (
     <>
       <Header />
-      {cartItems.length
+      { cartItems.length
         ? (
           <div className="wrapper">
             <div className="purchase-button-container">
-              <Button variant="secondary">Purchase</Button>
+              <Button variant="secondary" onClick={onPurchase}>Purchase</Button>
             </div>
             <Table striped bordered hover className="mb-4">
               <thead>

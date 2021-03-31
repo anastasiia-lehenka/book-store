@@ -1,9 +1,16 @@
-import { ADD_BOOK_TO_CART } from './types';
+import {
+  ADD_BOOK_TO_CART,
+  PURCHASE,
+  PURCHASE_FAILURE,
+  PURCHASE_SUCCESS,
+} from './types';
 
 const initialState = {
   data: [],
   totalPrice: 0,
   totalCount: 0,
+  isLoading: false,
+  error: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +38,23 @@ const reducer = (state = initialState, action) => {
         data,
         totalPrice: Number((state.totalPrice + action.payload.totalPrice).toFixed(2)),
         totalCount: state.totalCount + action.payload.count,
+      };
+
+    case PURCHASE:
+      return {
+        ...state,
+        isLoading: true,
+        error: '',
+      };
+
+    case PURCHASE_SUCCESS:
+      return initialState;
+
+    case PURCHASE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
 
     default: return state;

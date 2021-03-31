@@ -30,7 +30,7 @@ $ npm run stylelint:fix    fix all problems found by Stylelint in the app
 #### Tech stack
 
 - React, React Router, React Hooks;
-- Redux, Redux-Thunk;
+- Redux, Redux-Saga;
 - Bootstrap, React-Bootstrap;
 - SCSS;
 - ESLint
