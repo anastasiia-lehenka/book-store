@@ -54,6 +54,13 @@ class Service {
     entity: `${this.booksEntity}/${id}`,
     token,
   });
+
+  purchase = async (data, token) => this.sendHttpRequest({
+    method: 'POST',
+    entity: this.purchaseEntity,
+    data,
+    token,
+  });
 }
 
 const service = new Service();

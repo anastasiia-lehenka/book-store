@@ -1,2 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
 export const ADD_BOOK_TO_CART = 'ADD_BOOK_TO_CART';
+export const PURCHASE = 'PURCHASE';
+export const PURCHASE_SUCCESS = 'PURCHASE_SUCCESS';
+export const PURCHASE_FAILURE = 'PURCHASE_FAILURE';
