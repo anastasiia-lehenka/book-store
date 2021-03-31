@@ -22,6 +22,7 @@ const BookDetails = () => {
   const [countValue, setCountValue] = useState(1);
   const [totalPrice, setTotalPrice] = useState(book.price);
   const [isSuccessTextShown, setIsSuccessTextShown] = useState(false);
+  let timer;
 
   useEffect(() => {
     if (book.id !== id) {
@@ -31,6 +32,10 @@ const BookDetails = () => {
 
   useEffect(() => {
     setTotalPrice(book.price);
+  }, [book]);
+
+  useEffect(() => () => {
+    clearTimeout(timer);
   }, [book]);
 
   const convertTagsToString = (tags) => (tags
@@ -66,7 +71,7 @@ const BookDetails = () => {
     setCountValue(1);
     setTotalPrice(book.price);
     setIsSuccessTextShown(true);
-    setTimeout(() => setIsSuccessTextShown(false), 3000);
+    timer = setTimeout(() => setIsSuccessTextShown(false), 3000);
   };
 
   return (

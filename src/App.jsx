@@ -22,9 +22,9 @@ const App = () => {
       <Switch>
         <ProtectedRoute exact path="/catalog" component={BookCatalog} token={token} />
         <ProtectedRoute exact path="/catalog/:id" component={BookDetails} token={token} />
+        <ProtectedRoute exact path="/cart" component={Cart} token={token} />
         <Route exact path="/not-found" component={NotFound} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/cart" component={Cart} />
         <Route exact path="/">
           <Redirect to="/catalog" />
         </Route>
