@@ -14,13 +14,13 @@ const PurchaseModal = ({ children, onClose }) => (
     </Modal.Body>
 
     <Modal.Footer>
-      <Button variant="secondary" onClick={onClose}>Close</Button>
+      <Button variant="secondary" onClick={onClose} data-testid="modal-close-button">Close</Button>
     </Modal.Footer>
   </Modal>
 );
 
 PurchaseModal.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

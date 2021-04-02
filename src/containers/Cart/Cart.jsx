@@ -24,7 +24,7 @@ const Cart = () => {
   };
 
   return (
-    <>
+    <div data-testid="cart">
       <Header />
       { cartItems && cartItems.length
         ? (
@@ -46,7 +46,7 @@ const Cart = () => {
         <CartItemsTable items={cartItems} totalPrice={totalOrderPrice} />
       </PurchaseModal>
       )}
-    </>
+    </div>
   );
 };
 
