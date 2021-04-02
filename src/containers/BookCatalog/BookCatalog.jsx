@@ -25,8 +25,8 @@ const BookCatalog = () => {
     dispatch(setBooksSearch(value.toLowerCase().trim()));
   }, []);
 
-  const onFilter = useCallback((value) => {
-    dispatch(setBooksFilter(value));
+  const onFilter = useCallback((e) => {
+    dispatch(setBooksFilter(e.target.value));
   }, []);
 
   const searchBooks = (booksData, search) => (

@@ -15,10 +15,10 @@ const Search = ({ defaultValue, onSearch }) => {
   };
 
   return (
-    <Form className="search" onSubmit={onSubmit}>
+    <Form className="search" onSubmit={onSubmit} aria-label="form">
       <InputGroup>
         <InputGroup.Prepend>
-          <Button className="search__button" type="submit" variant="outline-secondary">
+          <Button className="search__button" type="submit" variant="outline-secondary" role="button">
             <SearchIcon />
           </Button>
         </InputGroup.Prepend>
@@ -26,7 +26,9 @@ const Search = ({ defaultValue, onSearch }) => {
           className="search__input"
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          type="text"
           placeholder="Search"
+          aria-label="search-input"
         />
       </InputGroup>
     </Form>

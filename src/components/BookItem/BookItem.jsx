@@ -8,14 +8,13 @@ const BookItem = ({ bookData }) => (
   <Card className="book-card">
     <Card.Img className="book-card__image" variant="top" src={bookData.cover} alt="book cover" />
     <Card.Body className="book-card__body">
-      <Card.Title>{bookData.title}</Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">{bookData.author}</Card.Subtitle>
+      <Card.Title data-testid="book-card-title">{bookData.title}</Card.Title>
+      <Card.Subtitle className="mb-2 text-muted" data-testid="book-card-author">{bookData.author}</Card.Subtitle>
     </Card.Body>
     <Card.Footer className="book-card__footer">
-      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <p className="m-0">{bookData.price}$</p>
+      <p className="m-0" data-testid="book-card-price">{`${bookData.price}$`}</p>
       <Link to={`/catalog/${bookData.id}`}>
-        <Button variant="outline-secondary" size="sm">View</Button>
+        <Button variant="outline-secondary" role="button" size="sm">View</Button>
       </Link>
     </Card.Footer>
   </Card>
