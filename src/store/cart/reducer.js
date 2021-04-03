@@ -78,12 +78,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case CLEAR_CART:
-      return {
-        ...state,
-        data: [],
-        totalPrice: 0,
-        totalCount: 0,
-      };
+      return initialState;
 
     default: return state;
   }

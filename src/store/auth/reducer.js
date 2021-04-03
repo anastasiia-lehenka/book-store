@@ -49,12 +49,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case LOG_OUT:
-      return {
-        ...state,
-        token: '',
-        username: '',
-        avatar: '',
-      };
+      return initialState;
 
     default: return state;
   }

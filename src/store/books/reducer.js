@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         openedBook: {
           ...state.openedBook,
-          data: [],
+          data: {},
           isLoading: true,
           error: '',
         },
@@ -73,7 +73,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         openedBook: {
-          data: [],
+          data: {},
           isLoading: false,
           error: action.payload,
         },

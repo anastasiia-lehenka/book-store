@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
-import CartItemsTable from './index';
+import CartItemsTable from '../../components/CartItemsTable';
 
 describe('CartItemsTable component', () => {
   test('should render props correctly', () => {

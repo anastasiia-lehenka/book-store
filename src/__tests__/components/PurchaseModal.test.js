@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import PurchaseModal from './index';
+import PurchaseModal from '../../components/PurchaseModal';
 
 describe('PurchaseModal component', () => {
   const onClose = jest.fn();
