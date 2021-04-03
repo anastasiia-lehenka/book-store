@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 const PurchaseModal = ({ children, onClose }) => (
-  <Modal show backdrop="static" keyboard={false} onHide={onClose}>
+  <Modal show backdrop="static" keyboard={false} onHide={onClose} data-testid="modal">
     <Modal.Header closeButton>
       <Modal.Title>Purchase Successful</Modal.Title>
     </Modal.Header>

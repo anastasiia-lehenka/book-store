@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import BookItem from './index';
+import BookItem from '../../components/BookItem';
 
 describe('BookItem component', () => {
   const history = createMemoryHistory();

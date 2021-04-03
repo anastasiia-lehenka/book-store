@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
-import NotFound from './index';
+import NotFound from '../../components/NotFound';
 
 describe('NotFound component', () => {
   test('renders correctly', () => {

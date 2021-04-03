@@ -29,7 +29,7 @@ const Header = () => {
             </Link>
             <Link to="/cart">
               <CartIcon className="header__cart-icon" />
-              <span className="mr-1">{`Cart (${cartCount})`}</span>
+              <span className="mr-1" data-testid="cart-text">{`Cart (${cartCount})`}</span>
             </Link>
           </div>
         </div>
